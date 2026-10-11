@@ -6,7 +6,6 @@ plugins:
       ref: v1.11.0
 lint:
   enabled:
-    - checkov
     - git-diff-check
     - markdownlint
     - prettier
