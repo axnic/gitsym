@@ -1,0 +1,110 @@
+# =============================================================================
+# gitsym — Development Environment
+# =============================================================================
+# This mise configuration sets up the tooling needed to work on gitsym: the
+# commitlint package (packages/commitlint) that enforces the commit format, and
+# commitlint itself so that this repository follows its own format.
+#
+# The task names follow the axnic/.github contract, so the shared workflows can
+# run them as-is:
+#   https://github.com/axnic/.github/blob/main/docs/Mise-Tasks.md
+#
+# First run:
+#   mise trust      # Trust this configuration (if prompted)
+#   mise install    # Install the pinned tools (node, rtunk)
+#
+# The npm dependencies are installed automatically before `mise run` (see [deps.npm]).
+#
+# Tasks:
+#   ci:commitlint         — validate commit messages on a range (--from/--to or --last)
+#   ci:build              — check that the package packs and data/symbols.json is valid
+#   ci:test        (test) — run the commitlint package tests
+#   security:audit        — audit the npm dependencies for known vulnerabilities
+#   ci                    — local gate: ci:build, then ci:test
+# =============================================================================
+
+# =============================================================================
+# Tools
+# =============================================================================
+
+[tools]
+node = "lts"                    # JavaScript runtime for the commitlint package and its tests
+"github:axnic/rtunk" = "latest" # rtunk CLI (code quality platform, Trunk-compatible), configured in .rtunk/rtunk.yaml
+
+# =============================================================================
+# Dependencies
+# =============================================================================
+# npm dependencies of the commitlint package, installed automatically before
+# `mise run` and `mise exec` (or manually with `mise deps`).
+# =============================================================================
+
+[deps.npm]
+auto = true
+dir = "packages/commitlint"
+
+# =============================================================================
+# CI tasks (axnic/.github contract)
+# =============================================================================
+# Run by the shared workflows (core.qa, security.audit, release.prepare) and
+# usable locally with `mise run <task>`.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# commitlint — validates commit messages against the gitsym format, using
+# .commitlintrc.js (which extends packages/commitlint). The commit-msg hook
+# checks the message being written (rtunk `commitlint` action); this task checks
+# commits that already exist. commitlint comes from the mise tool above.
+#
+# A range is required: without one commitlint waits on stdin.
+#
+# Usage: mise run ci:commitlint -- --from <sha> --to <sha>
+#        mise run ci:commitlint -- --last
+# -----------------------------------------------------------------------------
+
+[tasks."ci:commitlint"]
+description = "Validate commit messages (usage: mise run ci:commitlint -- --from <sha> --to <sha> | --last)"
+tools."npm:@commitlint/cli" = "latest"
+run = "commitlint --verbose"
+
+# -----------------------------------------------------------------------------
+# Build — there is nothing to compile: the check is that the package can be
+# packed and that the vocabulary file stays valid JSON.
+# -----------------------------------------------------------------------------
+
+[tasks."ci:build"]
+description = "Check that the package packs and that data/symbols.json is valid JSON"
+dir = "packages/commitlint"
+run = """
+set -eu
+node -e 'JSON.parse(require("fs").readFileSync("../../data/symbols.json", "utf8"))'
+npm pack --dry-run >/dev/null
+"""
+
+# -----------------------------------------------------------------------------
+# Tests — node:test, no framework. Also checks that the type list of the
+# package matches data/symbols.json.
+# -----------------------------------------------------------------------------
+
+[tasks."ci:test"]
+description = "Run the commitlint package tests"
+alias = "test"
+dir = "packages/commitlint"
+run = "npm test"
+
+# -----------------------------------------------------------------------------
+# Security — fails on high or critical advisories in the npm dependencies.
+# -----------------------------------------------------------------------------
+
+[tasks."security:audit"]
+description = "Audit the npm dependencies of the commitlint package"
+dir = "packages/commitlint"
+run = "npm audit --audit-level=high"
+
+# -----------------------------------------------------------------------------
+# Local gate — build, then tests.
+# -----------------------------------------------------------------------------
+
+[tasks.ci]
+description = "Local gate run before a release (build, then tests)"
+# Explicit order, not `depends` (parallel).
+run = [{ task = "ci:build" }, { task = "ci:test" }]
