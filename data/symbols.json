@@ -1,0 +1,210 @@
+{
+  "$comment": "Source of truth for the gitsym vocabulary. Keep in sync with README.md and packages/commitlint. 'gitmoji' lists every code of the official Gitmoji list (75 codes) under its closest symbol; ':boom:' is listed under each breaking type. 'conventional' covers every Conventional Commits / Angular type (feat, fix, docs, style, refactor, perf, test, build, ci, chore, revert). 'semver' is a suggested mapping, not enforced by any tool.",
+  "symbols": [
+    {
+      "symbol": "+",
+      "name": "Add",
+      "description": "New feature, service, resource, initial deploy",
+      "breaking": false,
+      "conventional": "feat",
+      "gitmoji": [
+        ":sparkles:",
+        ":globe_with_meridians:",
+        ":rocket:",
+        ":tada:",
+        ":bricks:",
+        ":heavy_plus_sign:",
+        ":chart_with_upwards_trend:",
+        ":loud_sound:",
+        ":seedling:",
+        ":triangular_flag_on_post:",
+        ":egg:",
+        ":stethoscope:",
+        ":airplane:",
+        ":bento:",
+        ":package:",
+        ":dizzy:",
+        ":safety_vest:",
+        ":money_with_wings:"
+      ],
+      "semver": "minor"
+    },
+    {
+      "symbol": "-",
+      "name": "Remove",
+      "description": "Delete service, file, dead code",
+      "breaking": false,
+      "conventional": "chore (removal)",
+      "gitmoji": [
+        ":fire:",
+        ":wastebasket:",
+        ":coffin:",
+        ":heavy_minus_sign:",
+        ":mute:"
+      ],
+      "semver": "patch"
+    },
+    {
+      "symbol": "~",
+      "name": "Improve",
+      "description": "Perf, config update, behavioral improvement (non-bug)",
+      "breaking": false,
+      "conventional": "perf, feat",
+      "gitmoji": [
+        ":wrench:",
+        ":zap:",
+        ":technologist:",
+        ":lipstick:",
+        ":wheelchair:",
+        ":children_crossing:",
+        ":iphone:",
+        ":speech_balloon:",
+        ":necktie:",
+        ":label:",
+        ":thread:",
+        ":card_file_box:",
+        ":mag:",
+        ":alien:",
+        ":goal_net:",
+        ":t-rex:"
+      ],
+      "semver": "patch"
+    },
+    {
+      "symbol": "!",
+      "name": "Fix",
+      "description": "Repair a bug or broken behavior",
+      "breaking": false,
+      "conventional": "fix",
+      "gitmoji": [
+        ":bug:",
+        ":ambulance:",
+        ":adhesive_bandage:",
+        ":rotating_light:",
+        ":pencil2:"
+      ],
+      "semver": "patch"
+    },
+    {
+      "symbol": "=",
+      "name": "Refactor",
+      "description": "No behavior change (style, tests, DX, CI)",
+      "breaking": false,
+      "conventional": "refactor, style, test, ci, build",
+      "gitmoji": [
+        ":recycle:",
+        ":art:",
+        ":green_heart:",
+        ":building_construction:",
+        ":white_check_mark:",
+        ":construction_worker:",
+        ":hammer:",
+        ":camera_flash:",
+        ":clown_face:",
+        ":poop:"
+      ],
+      "semver": "none"
+    },
+    {
+      "symbol": "^",
+      "name": "Bump",
+      "description": "Dependency version upgrade or downgrade (if it forces breaking changes, use ~!)",
+      "breaking": false,
+      "conventional": "build(deps), chore(deps)",
+      "gitmoji": [":arrow_up:", ":arrow_down:", ":pushpin:"],
+      "semver": "patch"
+    },
+    {
+      "symbol": ">",
+      "name": "Move",
+      "description": "Rename or relocate resources",
+      "breaking": false,
+      "conventional": "refactor",
+      "gitmoji": [":truck:"],
+      "semver": "patch"
+    },
+    {
+      "symbol": "<",
+      "name": "Revert",
+      "description": "Undo a previous commit",
+      "breaking": false,
+      "conventional": "revert",
+      "gitmoji": [":rewind:"],
+      "semver": "patch"
+    },
+    {
+      "symbol": "@",
+      "name": "Docs",
+      "description": "Documentation, README, procedures, comments",
+      "breaking": false,
+      "conventional": "docs",
+      "gitmoji": [
+        ":memo:",
+        ":bulb:",
+        ":page_facing_up:",
+        ":busts_in_silhouette:"
+      ],
+      "semver": "none"
+    },
+    {
+      "symbol": "$",
+      "name": "Security",
+      "description": "Fix, policy, secret management",
+      "breaking": false,
+      "conventional": "fix (security)",
+      "gitmoji": [":lock:", ":closed_lock_with_key:", ":passport_control:"],
+      "semver": "patch"
+    },
+    {
+      "symbol": "?",
+      "name": "Experiment",
+      "description": "POC, investigation, research",
+      "breaking": false,
+      "conventional": "none (closest: chore)",
+      "gitmoji": [":alembic:", ":test_tube:", ":monocle_face:"],
+      "semver": "none"
+    },
+    {
+      "symbol": "*",
+      "name": "Wildcard",
+      "description": "Does not fit any other type",
+      "breaking": false,
+      "conventional": "chore",
+      "gitmoji": [
+        ":bookmark:",
+        ":construction:",
+        ":twisted_rightwards_arrows:",
+        ":beers:",
+        ":see_no_evil:"
+      ],
+      "semver": "none"
+    },
+    {
+      "symbol": "+!",
+      "name": "Add (breaking)",
+      "description": "Addition that breaks backward compatibility",
+      "breaking": true,
+      "conventional": "feat!",
+      "gitmoji": [":boom:"],
+      "semver": "major"
+    },
+    {
+      "symbol": "~!",
+      "name": "Improve (breaking)",
+      "description": "Behavioral change that breaks backward compatibility",
+      "breaking": true,
+      "conventional": "perf!, feat!, fix!, refactor!, build!, ci!",
+      "gitmoji": [":boom:"],
+      "semver": "major"
+    },
+    {
+      "symbol": "-!",
+      "name": "Remove (breaking)",
+      "description": "Removal that breaks backward compatibility",
+      "breaking": true,
+      "conventional": "chore!, feat!",
+      "gitmoji": [":boom:"],
+      "semver": "major"
+    }
+  ]
+}
