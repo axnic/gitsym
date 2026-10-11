@@ -1,5 +1,12 @@
 # gitsym
 
+[![QA](https://img.shields.io/github/actions/workflow/status/axnic/gitsym/merge_group%2Cpull_request%2Cpush.qa.yaml?branch=main&label=QA)](https://github.com/axnic/gitsym/actions/workflows/merge_group%2Cpull_request%2Cpush.qa.yaml)
+[![OSV-Scanner](https://img.shields.io/github/actions/workflow/status/axnic/gitsym/pull_request%2Cpush%2Cschedule.osv.yaml?branch=main&label=OSV-Scanner)](https://github.com/axnic/gitsym/actions/workflows/pull_request%2Cpush%2Cschedule.osv.yaml)
+[![Code Scanning](https://img.shields.io/github/actions/workflow/status/axnic/gitsym/pull_request%2Cpush%2Cschedule.scan.yaml?branch=main&label=Code%20Scanning)](https://github.com/axnic/gitsym/actions/workflows/pull_request%2Cpush%2Cschedule.scan.yaml)
+[![npm](https://img.shields.io/npm/v/%40axnic%2Fcommitlint-config-gitsym?label=npm)](https://www.npmjs.com/package/@axnic/commitlint-config-gitsym)
+[![license](https://img.shields.io/github/license/axnic/gitsym?label=license)](LICENSE)
+[![commits](https://img.shields.io/badge/commits-gitsym-blue)](docs/specification.md)
+
 A commit message format where the type is a single ASCII symbol.
 
 gitsym is a hybrid of [Conventional Commits](https://www.conventionalcommits.org/) and [Gitmoji](https://gitmoji.dev/).
