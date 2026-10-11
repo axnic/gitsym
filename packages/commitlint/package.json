@@ -1,0 +1,20 @@
+{
+  "name": "@axnic/commitlint-config-gitsym",
+  "version": "0.1.0",
+  "description": "commitlint configuration and rules for the gitsym commit format",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "node --test"
+  },
+  "peerDependencies": {
+    "@commitlint/cli": ">=19"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/lint": "^19.0.0"
+  }
+}
