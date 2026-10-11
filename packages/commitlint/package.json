@@ -7,6 +7,11 @@
     "index.js"
   ],
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/axnic/gitsym.git",
+    "directory": "packages/commitlint"
+  },
   "publishConfig": {
     "access": "public"
   },
